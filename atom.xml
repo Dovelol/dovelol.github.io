@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Dovelol</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://dovelol.com/"/>
+  <updated>2017-01-15T02:50:06.624Z</updated>
+  <id>http://dovelol.com/</id>
+  
+  <author>
+    <name>Dovelol</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hello dovelol</title>
+    <link href="http://dovelol.com/blog/2017/1b5137f3/"/>
+    <id>http://dovelol.com/blog/2017/1b5137f3/</id>
+    <published>2017-01-14T08:52:15.000Z</published>
+    <updated>2017-01-15T02:50:06.624Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Hello-Dovelol"><a href="#Hello-Dovelol" class="headerlink" title="Hello Dovelol!"></a>Hello Dovelol!</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Hello-Dovelol&quot;&gt;&lt;a href=&quot;#Hello-Dovelol&quot; class=&quot;headerlink&quot; title=&quot;Hello Dovelol!&quot;&gt;&lt;/a&gt;Hello Dovelol!&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="dovelol" scheme="http://dovelol.com/tags/dovelol/"/>
+    
+  </entry>
+  
+</feed>
