@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dovelol.com/"/>
-  <updated>2017-01-15T02:50:06.624Z</updated>
+  <updated>2017-01-17T16:11:02.802Z</updated>
   <id>http://dovelol.com/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring MVC接收Date类型参数的问题</title>
+    <link href="http://dovelol.com/blog/2017/1138d2f9/"/>
+    <id>http://dovelol.com/blog/2017/1138d2f9/</id>
+    <published>2017-01-17T15:55:13.000Z</published>
+    <updated>2017-01-17T16:11:02.802Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Spring-MVC接收Date类型参数的问题"><a href="#Spring-MVC接收Date类型参数的问题" class="headerlink" title="Spring MVC接收Date类型参数的问题"></a>Spring MVC接收Date类型参数的问题</h2><p>如果实体中的时间属性为Date类型，而接收json数据一般都String类型，如果不作处理，那么默认只支持以下几种格式，否则会报错。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yyyy-MM-dd<span class="string">'T'</span><span class="string">HH:</span><span class="string">mm:</span>ss.SSSZ</div><div class="line">yyyy-MM-dd<span class="string">'T'</span><span class="string">HH:</span><span class="string">mm:</span>ss.SSS<span class="string">'Z'</span> </div><div class="line">EEE, dd MMM yyyy <span class="string">HH:</span><span class="string">mm:</span>ss zzz</div><div class="line">yyyy-MM-dd</div></pre></td></tr></table></figure>
+<p>一般我们传入的时间格式都是yyyy-MM-dd HH:mm:ss这样的，所以还需要做以下处理，这样才可以成功接收到。</p>
+<a id="more"></a>
+<p>1.在实体中对应的属性上添加<figure class="highlight plain"><figcaption><span>HH:mm:ss",timezone = "GMT+8")```注解</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2.在对应```Controller```中添加一个初始化的方法：</div><div class="line"></div><div class="line">``` java</div><div class="line">@InitBinder</div><div class="line">public void initBinder(WebDataBinder binder) &#123;</div><div class="line">    DateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);</div><div class="line">    sdf.setLenient(false);</div><div class="line">    binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意，此方法在使用<code>@RequestBody</code>注解的时候并不能接收到对应的值，这种情况一般是以json作为传递参数的形式，请求Content-Type为application/json，会在调用<code>initBinder()</code>方法前去接解析应的参数，这样等于此方法无效，会继续报异常。方法1是没有任何问题的。</p>
+<p>那么方法2什么时候有用呢，例如请求的Content-Type为application/x-www-form-urlencoded时，也就是说参数是以key=value的方式传递，这时<code>initBinder()</code>方法就会在进入具体接口方法前呗调用，就可以正常接收到对应类型的时间了。</p>
+<ul>
+<li>2017-01-17 23:55:13</li>
+<li>Dovelol</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Spring-MVC接收Date类型参数的问题&quot;&gt;&lt;a href=&quot;#Spring-MVC接收Date类型参数的问题&quot; class=&quot;headerlink&quot; title=&quot;Spring MVC接收Date类型参数的问题&quot;&gt;&lt;/a&gt;Spring MVC接收Date类型参数的问题&lt;/h2&gt;&lt;p&gt;如果实体中的时间属性为Date类型，而接收json数据一般都String类型，如果不作处理，那么默认只支持以下几种格式，否则会报错。&lt;/p&gt;
+&lt;figure class=&quot;highlight groovy&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;yyyy-MM-dd&lt;span class=&quot;string&quot;&gt;&#39;T&#39;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;HH:&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;mm:&lt;/span&gt;ss.SSSZ&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;yyyy-MM-dd&lt;span class=&quot;string&quot;&gt;&#39;T&#39;&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;HH:&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;mm:&lt;/span&gt;ss.SSS&lt;span class=&quot;string&quot;&gt;&#39;Z&#39;&lt;/span&gt; &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;EEE, dd MMM yyyy &lt;span class=&quot;string&quot;&gt;HH:&lt;/span&gt;&lt;span class=&quot;string&quot;&gt;mm:&lt;/span&gt;ss zzz&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;yyyy-MM-dd&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;一般我们传入的时间格式都是yyyy-MM-dd HH:mm:ss这样的，所以还需要做以下处理，这样才可以成功接收到。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://dovelol.com/categories/JAVA/"/>
+    
+    
+      <category term="spring" scheme="http://dovelol.com/tags/spring/"/>
+    
+      <category term="java" scheme="http://dovelol.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>hello dovelol</title>
