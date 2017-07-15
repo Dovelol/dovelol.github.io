@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://dovelol.com/"/>
-  <updated>2017-01-17T16:11:02.802Z</updated>
+  <updated>2017-07-15T09:07:41.616Z</updated>
   <id>http://dovelol.com/</id>
   
   <author>
@@ -14,6 +14,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dovelol</title>
+    <link href="http://dovelol.com/blog/2017/494c499a/"/>
+    <id>http://dovelol.com/blog/2017/494c499a/</id>
+    <published>2017-07-15T06:59:59.000Z</published>
+    <updated>2017-07-15T09:07:41.616Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="浅喜似苍狗-深爱如远风"><a href="#浅喜似苍狗-深爱如远风" class="headerlink" title="浅喜似苍狗 深爱如远风"></a>浅喜似苍狗 深爱如远风</h1><h1 id="所爱隔山海-山海不可平"><a href="#所爱隔山海-山海不可平" class="headerlink" title="所爱隔山海 山海不可平"></a>所爱隔山海 山海不可平</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;浅喜似苍狗-深爱如远风&quot;&gt;&lt;a href=&quot;#浅喜似苍狗-深爱如远风&quot; class=&quot;headerlink&quot; title=&quot;浅喜似苍狗 深爱如远风&quot;&gt;&lt;/a&gt;浅喜似苍狗 深爱如远风&lt;/h1&gt;&lt;h1 id=&quot;所爱隔山海-山海不可平&quot;&gt;&lt;a href=&quot;#所爱隔山海-
+    
+    </summary>
+    
+      <category term="Dovelol" scheme="http://dovelol.com/categories/Dovelol/"/>
+    
+    
+      <category term="dovelol" scheme="http://dovelol.com/tags/dovelol/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring MVC接收Date类型参数的问题</title>
